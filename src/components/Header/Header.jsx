@@ -19,7 +19,7 @@ const Header = (props) => {
         <div className="header">
             <div className="center row gap">
                 <button className="addNewButton" onClick={()=>navigate('/addNews')} >{t('addNews')}</button>
-                <Button path='/news' destination={t('news')} />
+                <Button path='/' destination={t('news')} />
                 <Button path='/archived' destination={t('archived')} />
             </div>
             {props.credentials?.user.email ?

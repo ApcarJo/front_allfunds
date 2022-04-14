@@ -19,7 +19,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (props.credentials.user?._id) {
-            navigate('/news');
+            navigate('/');
         }
     }, []);
 
@@ -54,22 +54,27 @@ const Login = (props) => {
     }
 
     const logeame = async () => {
- 
+        try {
             let body = {
                 email: credentials.email,
                 password: credentials.password
             }
-            const res = await loginUser(body)
-            .then(props.dispatch({ type: LOGIN, payload: res.data }))
-            .then(()=>navigate('/news'))
-            .catch(()=>setMensajeError({ ...msgError, eValidate: 'Wrong email or password' }))
+            const res = await loginUser(body);
+            props.dispatch({ type: LOGIN, payload: res.data });
+
+            setTimeout(() => {
+                navigate('/');
+            }, 250);
+        } catch {
+            setMensajeError({ ...msgError, eValidate: 'Wrong email or password' });
+        }
 
     }
 
     return (
         <div className="vistaLogin col">
             <div className="actionCard center col">
-            <h1>{t('login')}</h1>
+                <h1>{t('login')}</h1>
                 <div class="center col">
                     <input className="inputBox" name="email" type="text" onChange={updateCredentials} onBlur={() => checkError("email")} placeholder={t('email')} required />
                     <span className="errorsText">{msgError.eEmail}</span>

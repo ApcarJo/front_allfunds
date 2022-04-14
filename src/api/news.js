@@ -2,14 +2,11 @@
 import axios from 'axios';
 
 // const baseApi = "https://allfundsback.herokuapp.com/"
-const baseApi = "http://localhost:3006/"
-const apiUrl = "publications";
+const baseApi = "http://localhost:3006/publications"
 export const getPublications = async (page, limit, isArchived) => {
 
     try {
-        // let res = await axios.get(`https://dynamizaticbackend.herokuapp.com/record/get?page=${pagination.page}&limit=${pagination.limit}`);
-        return await axios.get(`${baseApi}${apiUrl}?page=${page}&limit=${limit}&isArchived=${isArchived}`);
-
+        return await axios.get(`${baseApi}?page=${page}&limit=${limit}&isArchived=${isArchived}`);
     } catch (e) {
         console.log(e);
     };
@@ -23,7 +20,7 @@ export const archiveNew = async (newId) => {
     }
 
     try {
-        await axios.put(`${baseApi}${apiUrl}`, body);
+        await axios.put(`${baseApi}`, body);
 
     } catch (e) {
         console.log(e);
@@ -35,7 +32,7 @@ export const deleteNew = async (newId) => {
         id: newId
     }
     try {
-        await axios.delete(`${baseApi}${apiUrl}`, { data: body });
+        await axios.delete(`${baseApi}`, { data: body });
     } catch (e) {
         console.log(e);
     };
@@ -43,7 +40,7 @@ export const deleteNew = async (newId) => {
 
 export const addNew = async (body) => {
     try {
-        return await axios.post(`${baseApi}${apiUrl}`, body);
+        return await axios.post(`${baseApi}`, body);
     } catch (e) {
         console.log(e);
     }

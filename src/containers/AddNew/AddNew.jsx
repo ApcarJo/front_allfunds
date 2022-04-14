@@ -16,7 +16,7 @@ const AddNewPublication = () => {
 
     const newPublication = () => {
         addNew(newData)
-        .then(()=>navigate(`/news`));
+            .then(() => navigate(`/`));
     }
 
     return (
@@ -26,14 +26,14 @@ const AddNewPublication = () => {
                 <div class="center col">
                     <input className="inputBox" name="title" type="text" onChange={updateForm} placeholder={t('title')} required />
 
-                    <input className="inputBox" name="password" type="password" onChange={updateForm} placeholder={t('description')} required />
+                    <input className="inputBox" name="description" type="string" onChange={updateForm} placeholder={t('description')} required />
 
-                    <textarea className="inputBox" name="password2" onChange={updateForm} placeholder={t('content')} />
-                    
-                    <input className="inputBox" name="date" type="date"onChange={updateForm} />
+                    <textarea className="inputBox" name="content" onChange={updateForm} placeholder={t('content')} />
+
+                    <input className="inputBox" name="date" type="date" onChange={updateForm} />
 
                     <input className="inputBox" name="author" type="string" placeholder={t('author')} onChange={updateForm} />
-                    
+
                 </div>
 
                 <div className="sendButton center" onClick={() => newPublication()}>Register</div>
