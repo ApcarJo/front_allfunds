@@ -32,7 +32,7 @@ const ArchivedNews = (props) => {
     }
 
     const deletePublication = (newId) => {
-        deleteNew(newId, props.credentials?.token)
+        deleteNew(newId, props.credentials?.user._id, props.credentials?.token)
             .then(() => loadArchived())
     }
 

@@ -37,9 +37,10 @@ export const archiveNew = async (newId, user_id, token) => {
     };
 }
 
-export const deleteNew = async (newId, token) => {
+export const deleteNew = async (newId, user_id, token) => {
     let body = {
-        id: newId
+        id: newId,
+        user_id: user_id
     }
     try {
         await axios.delete(`${baseApi}`, { data: body, headers:{'authorization':'Bearer ' + token} });
