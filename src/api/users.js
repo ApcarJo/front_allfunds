@@ -14,6 +14,6 @@ export const loginUser = async (body) => {
     try {
         return await axios.post(`https://allfundsback.herokuapp.com/login`, body);
     } catch (e) {
-        return e;
+        console.log(e);
     }
 }
