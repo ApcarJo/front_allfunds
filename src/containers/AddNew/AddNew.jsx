@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { t } from 'i18next';
 import { addNew } from '../../api/news'
 
@@ -43,4 +44,6 @@ const AddNewPublication = () => {
     )
 }
 
-export default AddNewPublication;
+export default connect((state) => ({
+    credentials: state.credentials
+}))(AddNewPublication);

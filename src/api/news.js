@@ -12,6 +12,15 @@ export const getPublications = async (page, limit, isArchived) => {
     };
 }
 
+export const getArchivedPublications = async (page, limit, isArchived) => {
+
+    try {
+        return await axios.get(`${baseApi}/archived?page=${page}&limit=${limit}&isArchived=${isArchived}`);
+    } catch (e) {
+        console.log(e);
+    };
+}
+
 export const archiveNew = async (newId) => {
     let body = {
         id: newId,

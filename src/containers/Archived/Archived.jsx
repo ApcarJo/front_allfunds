@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewsCard from '../../components/NewsCard/NewsCard';
-import { deleteNew, getPublications } from '../../api/news';
+import { deleteNew, getArchivedPublications } from '../../api/news';
 import { t } from 'i18next';
 import PaginateButtons from '../../components/PaginateButtons/PaginateButtons';
 
@@ -26,7 +26,7 @@ const ArchivedNews = () => {
 
     const loadArchived = async () => {
         let isArchived = true;
-        const res = await getPublications(pagination.page, pagination.limit, isArchived);
+        const res = await getArchivedPublications(pagination.page, pagination.limit, isArchived);
         setNews(res.data.results);
         setPagination({ ...pagination, prev: res.data.previous?.page, next: res.data.next?.page, count: res.data.count })
     }
@@ -57,4 +57,6 @@ const ArchivedNews = () => {
     );
 }
 
-export default ArchivedNews;
+export default connect((state) => ({
+    credentials: state.credentials
+}))(ArchivedNews);
