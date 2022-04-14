@@ -1,13 +1,16 @@
 
 .newsCard {
-    @extend .center;
     @extend .col;
-    width: 30em;
+    width: 35em;
     height: 10em;
-    padding: 2em;
     display: flex;
     background-color: rgb(255, 255, 255);
     border-radius: 0.05em;
     color: black;
     font: bold;
+}
+
+.footerCard {
+    display: flex;
+    justify-content: space-between;
 }

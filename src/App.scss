@@ -1,18 +1,21 @@
 @import './containers/News/News.scss';
 @import './containers/Register/Register.scss';
 @import './containers/Home/Home.scss';
+@import './containers/Login/Login.scss';
 
 @import './components/NewsCard/NewsCard.scss';
+@import './components/Header/Header.scss';
+@import './components/Button/Button.scss';
 
 .mainHome {
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 2em;
 }
 
 .center {

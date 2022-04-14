@@ -1,0 +1,11 @@
+{
+    "register": "Register",
+    "login": "Login",
+    "news": "News",
+    "archived": "Archived",
+    "archive": "Archive",
+    "active": "Active",
+    "delete": "Delete",
+    "logout": "Logout",
+    "emailNotValid": "The email is not valid"
+}
