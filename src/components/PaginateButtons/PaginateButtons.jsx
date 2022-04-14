@@ -6,7 +6,7 @@ const PaginateButtons = (props) => {
     }
 
     return (
-        <div class="row gap05">
+        <div className="row gap05">
             {props.pagination.prev && (
                 <button type="button" className="paginateButton" onClick={() => changePage(props.pagination.prev)}>
                     {props.pagination.prev}

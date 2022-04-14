@@ -46,7 +46,7 @@ const ArchivedNews = (props) => {
                 {news.length > 0 && news?.map((newsA, index) => (
                     <div key={index} className="contentCard col">
                         <NewsCard data={newsA} />
-                        <div class="actionButtons">
+                        <div className="actionButtons">
                         {props.credentials?.user._id === newsA.user_id && <button type="button" onClick={() => deletePublication(newsA._id)}>{t('delete')}</button>}
                         </div>
                     </div>

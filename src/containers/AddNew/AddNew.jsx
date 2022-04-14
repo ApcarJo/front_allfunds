@@ -32,7 +32,7 @@ const AddNewPublication = (props) => {
         <div className="addNewView">
             <div className="actionCard center col ">
                 <h1>{t('newPublication')}</h1>
-                <div class="center col gap05">
+                <div className="center col gap05">
                     <input className="inputBox" name="title" type="text" onChange={updateForm} placeholder={t('title')} required />
 
                     <input className="inputBox" name="description" type="string" onChange={updateForm} placeholder={t('description')} required />
