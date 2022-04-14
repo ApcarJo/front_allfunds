@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 
-const baseApi = "https://allfundsback.herokuapp.com/"
+// const baseApi = "https://allfundsback.herokuapp.com/"
+const baseApi = "http://localhost:3006/"
 const apiUrl = "publications";
 export const getPublications = async (page, limit, isArchived) => {
 

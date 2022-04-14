@@ -15,5 +15,9 @@
     "repeatPassword": "Repeat password",
     "addNews": "Add NEW",
     "newPublication": "New publication",
-    "back": "Back"
+    "back": "Back",
+    "ePassword": "At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number. Can contain special characters",
+    "ePassword2": "Passwords should be same",
+    "eInsertEmail": "Please, enter your email",
+    "eInsertPassword": "Please, enter your password"
 }

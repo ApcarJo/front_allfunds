@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
+import { registerUser } from '../../api/users';
 
 const Register = () => {
 
@@ -31,15 +31,8 @@ const Register = () => {
         }
 
         if (dataUser.password === dataUser.password2) {
-            try {
-                await axios.post('https://dynamizaticbackend.herokuapp.com/user', body);
-            } catch (e) {
-                console.log(e);
-            }
-
-            setTimeout(() => {
-                navigate(`/login`);
-            }, 750);
+            registerUser(body)
+                .then(() => navigate('/login'))
         }
     }
 
@@ -56,7 +49,7 @@ const Register = () => {
 
             case 'password':
                 if (! /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(dataUser.password)) {
-                    setErrors({ ...errors, ePassword: 'At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number. Can contain special characters' });
+                    setErrors({ ...errors, ePassword: `${t('ePassword')}` });
                 } else {
                     setErrors({ ...errors, ePassword: '' });
                 }
@@ -64,7 +57,7 @@ const Register = () => {
 
             case 'password2':
                 if (dataUser.password !== dataUser.password2) {
-                    setErrors({ ...errors, ePassword2: 'Password should be the same' });
+                    setErrors({ ...errors, ePassword2: `${t('ePassword2')}` });
                 } else {
                     setErrors({ ...errors, ePassword2: '' });
                 }

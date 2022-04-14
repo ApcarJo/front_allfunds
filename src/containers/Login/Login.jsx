@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types';
 import { t } from 'i18next';
+import { loginUser } from '../../api/users'
 
 const Login = (props) => {
 
@@ -33,7 +33,7 @@ const Login = (props) => {
             case 'email':
 
                 if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(credentials.email)) {
-                    setMensajeError({ ...msgError, eEmail: "Please, enter your email" });
+                    setMensajeError({ ...msgError, eEmail: t('eInsertEmail') });
                 } else {
                     setMensajeError({ ...msgError, eEmail: "" });
                 }
@@ -42,7 +42,7 @@ const Login = (props) => {
             case 'password':
 
                 if (credentials.password.length < 1) {
-                    setMensajeError({ ...msgError, ePassword: "Please, enter your password" });
+                    setMensajeError({ ...msgError, ePassword: t('eInsertPassword') });
                 } else {
                     setMensajeError({ ...msgError, ePassword: "" });
                 }
@@ -54,22 +54,16 @@ const Login = (props) => {
     }
 
     const logeame = async () => {
-        try {
+ 
             let body = {
                 email: credentials.email,
                 password: credentials.password
             }
-            let res = await axios.post(`https://dynamizaticbackend.herokuapp.com/login`, body);
+            const res = await loginUser(body)
+            .then(props.dispatch({ type: LOGIN, payload: res.data }))
+            .then(()=>navigate('/news'))
+            .catch(()=>setMensajeError({ ...msgError, eValidate: 'Wrong email or password' }))
 
-            props.dispatch({ type: LOGIN, payload: res.data });
-
-            setTimeout(() => {
-                navigate('/news');
-            }, 250);
-
-        } catch {
-            setMensajeError({ ...msgError, eValidate: 'Wrong email or password' });
-        }
     }
 
     return (
