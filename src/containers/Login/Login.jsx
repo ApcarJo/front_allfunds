@@ -75,7 +75,7 @@ const Login = (props) => {
         <div className="vistaLogin col">
             <div className="actionCard center col">
                 <h1>{t('login')}</h1>
-                <div Name="center col">
+                <div className="center col">
                     <input className="inputBox" name="email" type="text" onChange={updateCredentials} onBlur={() => checkError("email")} placeholder={t('email')} required />
                     <span className="errorsText">{msgError.eEmail}</span>
 

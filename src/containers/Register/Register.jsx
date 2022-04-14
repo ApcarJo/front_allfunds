@@ -72,7 +72,7 @@ const Register = () => {
         <div className="registerView">
             <div className="actionCard center col">
                 <h1>{t('register')}</h1>
-                <div Name="center col">
+                <div className="center col">
                     <input className="inputBox" name="email" type="text" onChange={updateForm} onBlur={() => checkError("email")} placeholder={t('email')} required />
                     <span className="errorsText">{errors.eEmail}</span>
 
