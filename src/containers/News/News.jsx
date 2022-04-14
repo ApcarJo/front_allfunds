@@ -47,7 +47,7 @@ const News = (props) => {
                     <div key={index} className="contentCard col">
                         <NewsCard data={newsA} />
                         <div class="actionButtons">
-                            <button type="button" onClick={() => loadArchive(newsA._id)}>{t('archive')}</button>
+                            {props.credentials?.user._id === newsA.user_id && <button type="button" onClick={() => loadArchive(newsA._id)}>{t('archive')}</button>}
                         </div>
                     </div>
                 ))}

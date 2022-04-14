@@ -30,9 +30,9 @@ const AddNewPublication = (props) => {
 
     return (
         <div className="addNewView">
-            <div className="actionCard center col">
+            <div className="actionCard center col ">
                 <h1>{t('newPublication')}</h1>
-                <div class="center col">
+                <div class="center col gap05">
                     <input className="inputBox" name="title" type="text" onChange={updateForm} placeholder={t('title')} required />
 
                     <input className="inputBox" name="description" type="string" onChange={updateForm} placeholder={t('description')} required />
@@ -45,8 +45,8 @@ const AddNewPublication = (props) => {
 
                 </div>
 
-                <div className="sendButton center" onClick={() => newPublication()}>Register</div>
-                <div className="sendButton center" onClick={() => navigate(-1)}>back</div>
+                <button type="button" className="sendButton center" onClick={() => newPublication()}>{t('add')}</button>
+                <div className="sendButton center" onClick={() => navigate(-1)}>{t('back')}</div>
             </div>
         </div>
     )

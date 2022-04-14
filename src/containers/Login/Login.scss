@@ -39,6 +39,7 @@
 }
 
 .inputBox {
+    all: unset;
     background-color: white;
     height: 2em;
     width: 24em;
@@ -47,7 +48,6 @@
     padding-bottom: 0;
     border-radius: 0.2em;
     opacity: 1;
-    border: rgba(59, 59, 59, 0.568) 0.1em solid;
     color: black;
     transition: 0.4s;
     &:focus {
