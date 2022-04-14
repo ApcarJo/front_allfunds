@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import NewsCard from '../../components/NewsCard/NewsCard';
-import { deleteNew, getArchivedPublications } from '../../api/news';
+import { deleteNew, getPublications, getArchivedPublications } from '../../api/news';
 import { t } from 'i18next';
 import PaginateButtons from '../../components/PaginateButtons/PaginateButtons';
 
