@@ -1,8 +1,10 @@
 
 .newsList {
     height: fit-content;
+    min-height: 35em; 
     width: 40em;
     background-color: white;
+    margin: 1em;
 }
 
 .newsView {
@@ -13,6 +15,7 @@
     justify-content: flex-start;
     background-color: #f3f3f3;
     padding: 2em;
+    flex: 1;
 }
 
 .actionButtons {

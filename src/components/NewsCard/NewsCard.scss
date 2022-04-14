@@ -1,8 +1,10 @@
 
 .newsCard {
     @extend .col;
-    width: 35em;
-    height: 10em;
+    box-sizing: border-box;
+    width: 40em;
+    padding: 0.5em 1em;
+    height: 100%;
     display: flex;
     background-color: rgb(255, 255, 255);
     border-radius: 0.05em;
@@ -13,4 +15,20 @@
 .footerCard {
     display: flex;
     justify-content: space-between;
+    margin-top: 1em;
+}
+
+.titleNew {
+    color: black;
+    font-weight: 700;
+    font-size: large;
+}
+
+.descriptionNew {
+    color: black;
+    font-size: medium;
+}
+
+.contentNew {
+
 }

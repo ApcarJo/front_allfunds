@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types';
+import { t } from 'i18next';
 
 const Login = (props) => {
 
@@ -72,19 +73,19 @@ const Login = (props) => {
     }
 
     return (
-        <div className="vistaLogin column">
-            <div className="actionCard center column">
-            <span className="paddingY">LOGIN</span>
-                <div>
-                    <input className="inputBox" name="email" type="text" onChange={updateCredentials} onBlur={() => checkError("email")} placeholder="email" required />
+        <div className="vistaLogin col">
+            <div className="actionCard center col">
+            <h1>{t('login')}</h1>
+                <div class="center col">
+                    <input className="inputBox" name="email" type="text" onChange={updateCredentials} onBlur={() => checkError("email")} placeholder={t('email')} required />
                     <span className="errorsText">{msgError.eEmail}</span>
 
-                    <input className="inputBox" name="password" type="password" onChange={updateCredentials} onBlur={() => checkError("password")} placeholder="password" required />
+                    <input className="inputBox" name="password" type="password" onChange={updateCredentials} onBlur={() => checkError("password")} placeholder={t('password')} required />
                     <span className="errorsText">{msgError.ePassword}</span>
                 </div>
 
-                <div className="sendButton center" onClick={() => logeame()}>Sign in</div>
-                <div className="sendButton" onClick={() => navigate(`/register`)}>Register now!</div>
+                <div className="sendButton center" onClick={() => logeame()}>{t('signin')}</div>
+                <div className="sendButton" onClick={() => navigate(`/register`)}>{t('registernow')}</div>
             </div>
             <span className="paddingY">{msgError.eValidate}</span>
         </div>

@@ -10,7 +10,7 @@ const RenderlessApiCall = (props) => {
         try {
             let res = await axios({ 
                 method: `${props.method}`,
-                url: (`${props.URL}`),
+                url: (`${props.URL}${props.URL2}`),
                 data: {...props.body}});
             props.data(res.data);
         } catch (e) {

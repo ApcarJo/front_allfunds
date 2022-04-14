@@ -7,5 +7,13 @@
     "active": "Active",
     "delete": "Delete",
     "logout": "Logout",
-    "emailNotValid": "The email is not valid"
+    "emailNotValid": "The email is not valid",
+    "signin": "Sign in",
+    "registernow": "Register now!",
+    "password": "Password",
+    "email": "Email",
+    "repeatPassword": "Repeat password",
+    "addNews": "Add NEW",
+    "newPublication": "New publication",
+    "back": "Back"
 }

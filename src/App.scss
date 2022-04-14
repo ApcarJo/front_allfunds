@@ -2,10 +2,12 @@
 @import './containers/Register/Register.scss';
 @import './containers/Home/Home.scss';
 @import './containers/Login/Login.scss';
+@import './containers/AddNew/AddNew.scss';
 
 @import './components/NewsCard/NewsCard.scss';
 @import './components/Header/Header.scss';
 @import './components/Button/Button.scss';
+@import './components/PaginateButtons/PaginateButtons.scss';
 
 .mainHome {
     width: 100%;
@@ -38,7 +40,16 @@
     gap: 2em;
 }
 
+.gap05 {
+    gap: 0.5em;
+}
+
 .separatorLine {
     border-bottom: solid rgba(146, 146, 146, 0.503) 1px;
 }
 
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

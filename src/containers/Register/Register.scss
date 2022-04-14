@@ -1,10 +1,14 @@
 
-.vistaRegister{
-    @extend .center;
+.registerView{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     box-sizing: border-box;
     width: 100%;
     color: black;
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(192, 207, 218);
+    flex: 1;
 }
 
 .inputBox {
@@ -22,24 +26,5 @@
     &:focus {
         transition: cubic-bezier(0.23, 1, 0.32, 1);
         border: grey 0.1em solid;
-    }
-}
-
-.sendButton {
-    box-sizing: border-box;
-    @extend .center;
-    height: 3em;
-    width: 100%;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background-color: grey;
-    transition: 0.5s;
-    font-size: smaller;
-    border-radius: 0.5em;
-    color: white;
-    &:hover {
-        transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        background-color: rgb(153, 82, 219);
     }
 }

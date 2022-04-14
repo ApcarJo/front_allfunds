@@ -8,7 +8,7 @@ const Register = () => {
 
     let navigate = useNavigate();
 
-    const [datosUser, setDatosUser] = useState({
+    const [dataUser, setDataUser] = useState({
         email: '',
         password: '',
         password2: '',
@@ -20,17 +20,17 @@ const Register = () => {
         ePassword2: '',
     });
 
-    const updateFormulario = (e) => {
-        setDatosUser({ ...datosUser, [e.target.name]: e.target.value })
+    const updateForm = (e) => {
+        setDataUser({ ...dataUser, [e.target.name]: e.target.value })
     }
 
     const applyRegister = async () => {
         let body = {
-            email: datosUser.email,
-            password: datosUser.password
+            email: dataUser.email,
+            password: dataUser.password
         }
 
-        if (datosUser.password === datosUser.password2) {
+        if (dataUser.password === dataUser.password2) {
             try {
                 await axios.post('https://dynamizaticbackend.herokuapp.com/user', body);
             } catch (e) {
@@ -46,7 +46,7 @@ const Register = () => {
     const checkError = (arg) => {
         switch (arg) {
             case 'email':
-                if (! /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(datosUser.email)) {
+                if (! /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(dataUser.email)) {
                     setErrors({ ...errors, eEmail: t('emailNotValid') });
                 } else {
                     setErrors({ ...errors, eEmail: '' });
@@ -55,7 +55,7 @@ const Register = () => {
                 break;
 
             case 'password':
-                if (! /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(datosUser.password)) {
+                if (! /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(dataUser.password)) {
                     setErrors({ ...errors, ePassword: 'At least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number. Can contain special characters' });
                 } else {
                     setErrors({ ...errors, ePassword: '' });
@@ -63,7 +63,7 @@ const Register = () => {
                 break;
 
             case 'password2':
-                if (datosUser.password !== datosUser.password2) {
+                if (dataUser.password !== dataUser.password2) {
                     setErrors({ ...errors, ePassword2: 'Password should be the same' });
                 } else {
                     setErrors({ ...errors, ePassword2: '' });
@@ -76,22 +76,22 @@ const Register = () => {
     }
 
     return (
-        <div className="vistaRegister">
+        <div className="registerView">
             <div className="actionCard center col">
-                <span>REGISTER</span>
-                <div>
-                    <input className="inputBox" name="email" type="text" onChange={updateFormulario} onBlur={() => checkError("email")} placeholder="Email" required />
+                <h1>{t('register')}</h1>
+                <div class="center col">
+                    <input className="inputBox" name="email" type="text" onChange={updateForm} onBlur={() => checkError("email")} placeholder={t('email')} required />
                     <span className="errorsText">{errors.eEmail}</span>
 
-                    <input className="inputBox" name="password" type="password" onChange={updateFormulario} onBlur={() => checkError("password")} placeholder="Password" required />
+                    <input className="inputBox" name="password" type="password" onChange={updateForm} onBlur={() => checkError("password")} placeholder={t('password')} required />
                     <span className="errorsText">{errors.ePassword}</span>
 
-                    <input className="inputBox" name="password2" type="password" onChange={updateFormulario} onBlur={() => checkError("password2")} placeholder="Repeat Password" required />
+                    <input className="inputBox" name="password2" type="password" onChange={updateForm} onBlur={() => checkError("password2")} placeholder={t('repeat_password')} required />
                     <span className="errorsText">{errors.ePassword2}</span>
                 </div>
 
-                <div className="sendButton center" onClick={() => applyRegister()}>Register</div>
-                <div className="sendButton center" onClick={() => navigate(-1)}>back</div>
+                <div className="sendButton center" onClick={() => applyRegister()}>{t('register')}</div>
+                <div className="sendButton center" onClick={() => navigate(-1)}>{t('back')}</div>
             </div>
         </div>
     )

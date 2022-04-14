@@ -11,39 +11,33 @@ const Header = (props) => {
 
     const logOut = () => {
 
-        props.dispatch({type:LOGOUT});
+        props.dispatch({ type: LOGOUT });
         navigate("/")
     }
 
-    if (props.credentials.user.email){
-        return(
-            <div className="header">
-                <div className="center row gap">
-                    <div type="button" onClick={() => navigate('/news')}>{t('news')}</div>
-                    <div type="button" onClick={() => navigate('/archived')}>{t('archived')}</div>
-                </div>
+    return (
+        <div className="header">
+            <div className="center row gap">
+                <button className="addNewButton" onClick={()=>navigate('/addNews')} >{t('addNews')}</button>
+                <Button path='/news' destination={t('news')} />
+                <Button path='/archived' destination={t('archived')} />
+            </div>
+            {props.credentials?.user.email ?
                 <div className="headerUser">
                     <div>{props.credentials?.user.email}</div>
                     <div className="verticalLine">
                         <div className="linkLogout" onClick={() => logOut()}>{t('logout')}</div>
                     </div>
-                </div>
-            </div>
-        )
-    } else {
-        return(
-            <div className="header">
-                <div className="headerUser">
-                        <Button path="/login" destination={t('login')} />
+                </div> : <div className="headerUser">
+                    <Button path="/login" destination={t('login')} />
                     <div className="verticalLine">
-                        <Button path="/register" destination={t('register')}/>
+                        <Button path="/register" destination={t('register')} />
                     </div>
-                </div>
-            </div>
-        )
-    }
+                </div>}
+        </div>
+    )
 }
 
 export default connect((state) => ({
-    credentials:state.credentials
+    credentials: state.credentials
 }))(Header);

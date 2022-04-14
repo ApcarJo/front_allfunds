@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import NewsCard from '../../components/NewsCard/NewsCard';
+import { deleteNew, getPublications } from '../../api/news';
 import { t } from 'i18next';
+import PaginateButtons from '../../components/PaginateButtons/PaginateButtons';
 
-const News = (props) => {
+const ArchivedNews = () => {
 
     const [news, setNews] = useState({});
-    const [archived, setArchived] = useState({});
 
     const [pagination, setPagination] = useState({
         page: 1,
-        limit: 10,
+        limit: 4,
         next: '',
         prev: '',
         count: '',
@@ -19,61 +19,42 @@ const News = (props) => {
     });
 
     useEffect(() => {
-        getArchivedPublications();
-    }, []);
+        loadArchived();
+    }, [pagination.page]);
 
 
 
-    const getArchivedPublications = async () => {
-        try {
-            let res = await axios.get(`http://localhost:3006/publications/archived`);
-            setNews(res.data);
-            setPagination({ ...pagination, prev: res.data.previous?.page, next: res.data.next?.page, count: res.data.coun })
-            pagination.res = Math.floor(res.data.count / res.data.next?.limit);
-        } catch (e) {
-            console.log(e);
-        };
+    const loadArchived = async () => {
+        let isArchived = true;
+        const res = await getPublications(pagination.page, pagination.limit, isArchived);
+        setNews(res.data.results);
+        setPagination({ ...pagination, prev: res.data.previous?.page, next: res.data.next?.page, count: res.data.count })
     }
 
-    const deleteNew = async (newId) => {
-        let body = {
-            id: newId
-        }
-        try {
-            await axios.delete(`http://localhost:3006/publications`, { data: body });
-            getArchivedPublications()
-        } catch (e) {
-            console.log(e);
-        };
+    const deletePublication = (newId) => {
+        deleteNew(newId)
+            .then(() => loadArchived())
     }
 
-
-    if (news.length) {
-        return (
-            <div className="newsView">
-                <h1>{t('news')}</h1>
-                
-                <div className="newsList">
-                    {news.map((newsA, index) => (
-                        <div className="contentCard col">
-                            <NewsCard key={index} data={newsA} />
-                            <div class="actionButtons">
-                                <button type="button" onClick={() => deleteNew(newsA._id)}>{t('delete')}</button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-        );
-    } else {
-        return (
-            <div className="newsView">
+    return (
+        <div className="newsView">
+            <h1>{t('archived')}</h1>
+            {!news.length && <div className="newsView">
                 <span>{t('loading')}</span>
+            </div>}
+            <div className="newsList">
+                {news.length > 0 && news?.map((newsA, index) => (
+                    <div key={index} className="contentCard col">
+                        <NewsCard data={newsA} />
+                        <div class="actionButtons">
+                            <button type="button" onClick={() => deletePublication(newsA._id)}>{t('delete')}</button>
+                        </div>
+                    </div>
+                ))}
             </div>
-        );
-    }
-
+            <PaginateButtons pagination={pagination} change={setPagination} />
+        </div>
+    );
 }
 
-export default News;
+export default ArchivedNews;

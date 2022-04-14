@@ -37,3 +37,15 @@
     text-decoration: underline;
     transition: 0.2s;
 }
+
+.addNewButton {
+    all: unset;
+    color:#2b2d2f;
+    background-color: rgb(122, 227, 183);
+    padding: 0.3em 0.6em;
+    border-radius: 0.3em;
+    &:hover {
+        color: white;
+        cursor: pointer;
+    }
+}
