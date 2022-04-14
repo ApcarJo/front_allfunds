@@ -21,27 +21,28 @@ export const getArchivedPublications = async (page, limit, isArchived) => {
     };
 }
 
-export const archiveNew = async (newId) => {
+export const archiveNew = async (newId, user_id, token) => {
     let body = {
+        user_id: user_id,
         id: newId,
         isArchived: true,
         archiveDate: new Date()
     }
 
     try {
-        await axios.put(`${baseApi}`, body);
+        await axios.put(`${baseApi}`, body, {headers:{'authorization':'Bearer ' + token}});
 
     } catch (e) {
         console.log(e);
     };
 }
 
-export const deleteNew = async (newId) => {
+export const deleteNew = async (newId, token) => {
     let body = {
         id: newId
     }
     try {
-        await axios.delete(`${baseApi}`, { data: body });
+        await axios.delete(`${baseApi}`, { data: body, headers:{'authorization':'Bearer ' + token} });
     } catch (e) {
         console.log(e);
     };

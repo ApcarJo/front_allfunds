@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { t } from 'i18next';
 import { addNew } from '../../api/news'
 
-const AddNewPublication = () => {
+const AddNewPublication = (props) => {
 
     let navigate = useNavigate();
 
@@ -16,7 +16,15 @@ const AddNewPublication = () => {
     }
 
     const newPublication = () => {
-        addNew(newData)
+        let body = {
+            user_id: props.credentials?.user._id,
+            title: newData.title,
+            description: newData.description,
+            author: newData.author,
+            date: newData.date,
+            content: newData.content,
+        }
+        addNew(body)
             .then(() => navigate(`/`));
     }
 

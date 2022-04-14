@@ -5,7 +5,7 @@ import { t } from 'i18next';
 import PaginateButtons from '../../components/PaginateButtons/PaginateButtons';
 import { getPublications, archiveNew } from '../../api/news';
 
-const News = () => {
+const News = (props) => {
 
     const [news, setNews] = useState({});
 
@@ -30,7 +30,7 @@ const News = () => {
     }
 
     const loadArchive = (newId) => {
-        archiveNew(newId)
+        archiveNew(newId, props.credentials?.user._id, props.credentials?.token)
             .then(() => loadNews())
     }
 
@@ -58,4 +58,6 @@ const News = () => {
 
 }
 
-export default News;
+export default connect((state) => ({
+    credentials: state.credentials
+}))(News);

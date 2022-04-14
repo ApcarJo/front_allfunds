@@ -5,7 +5,7 @@ import { deleteNew, getArchivedPublications } from '../../api/news';
 import { t } from 'i18next';
 import PaginateButtons from '../../components/PaginateButtons/PaginateButtons';
 
-const ArchivedNews = () => {
+const ArchivedNews = (props) => {
 
     const [news, setNews] = useState({});
 
@@ -32,7 +32,7 @@ const ArchivedNews = () => {
     }
 
     const deletePublication = (newId) => {
-        deleteNew(newId)
+        deleteNew(newId, props.credentials?.token)
             .then(() => loadArchived())
     }
 
